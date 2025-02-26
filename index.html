@@ -16,8 +16,6 @@
 
         video {
             position: fixed;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -38,7 +36,6 @@
             transition: all 0.3s ease;
             display: none;
             opacity: 0;
-            z-index: 10;
         }
 
         #startButton.show {
@@ -51,53 +48,44 @@
                 opacity: 1;
             }
         }
-
-        #startButton:hover {
-            color: #ffffff;
-            text-shadow: 0 0 8px #ffcc00, 0 0 16px #ffcc00;
-            transform: translate(-50%, -5px);
-        }
     </style>
 </head>
 <body>
-    <video id="pokechatVideo" autoplay playsinline muted>
+    <video id="pokechatVideo" autoplay playsinline>
         <source src="./pokechat.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
-    <button id="startButton">Start</button>
+    <button id="startButton" onclick="location.href='trainer.html'">Start</button>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             let video = document.getElementById("pokechatVideo");
             let startButton = document.getElementById("startButton");
 
-            // Autoplay video with muted sound (required for some browsers)
-            video.muted = true;
-            video.play().then(() => {
-                console.log("Video is playing successfully.");
-            }).catch(error => {
-                console.error("Autoplay failed:", error);
+            // Attempt to play with sound
+            video.muted = false;
+            video.volume = 1.0;
+            video.play().catch(error => {
+                console.warn("Autoplay with sound failed. Muting video.");
+                video.muted = true;
+                video.play();
             });
 
             // Show start button after 3 seconds
-            video.addEventListener('playing', function() {
-                setTimeout(function() {
-                    startButton.classList.add('show');
+            video.addEventListener("playing", function() {
+                setTimeout(() => {
+                    startButton.classList.add("show");
                 }, 3000);
             });
 
-            // Unmute on user interaction
-            startButton.addEventListener("click", function() {
+            // Unmute on first user interaction
+            document.addEventListener("click", function unmuteVideo() {
                 video.muted = false;
                 video.play();
-                console.log("Video unmuted and playing.");
-            });
-
-            // Handle video loading errors
-            video.addEventListener("error", function() {
-                console.error("Error loading video. Check the file path.");
+                document.removeEventListener("click", unmuteVideo);
             });
         });
     </script>
 </body>
 </html>
+
