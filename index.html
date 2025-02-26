@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome!</title>
+    <link rel="icon" type="image/png" href="./pic/pokeball.png">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            overflow: hidden;
+        }
+
+        video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        #startButton {
+            position: fixed;
+            bottom: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: none;
+            color: #ffcc00;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 24px;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            display: none;
+            opacity: 0;
+            z-index: 10;
+        }
+
+        #startButton.show {
+            display: block;
+            animation: fadeIn 1s forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        #startButton:hover {
+            color: #ffffff;
+            text-shadow: 0 0 8px #ffcc00, 0 0 16px #ffcc00;
+            transform: translate(-50%, -5px);
+        }
+    </style>
+</head>
+<body>
+    <video id="pokechatVideo" autoplay playsinline muted>
+        <source src="./pokechat.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <button id="startButton">Start</button>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let video = document.getElementById("pokechatVideo");
+            let startButton = document.getElementById("startButton");
+
+            // Autoplay video with muted sound (required for some browsers)
+            video.muted = true;
+            video.play().then(() => {
+                console.log("Video is playing successfully.");
+            }).catch(error => {
+                console.error("Autoplay failed:", error);
+            });
+
+            // Show start button after 3 seconds
+            video.addEventListener('playing', function() {
+                setTimeout(function() {
+                    startButton.classList.add('show');
+                }, 3000);
+            });
+
+            // Unmute on user interaction
+            startButton.addEventListener("click", function() {
+                video.muted = false;
+                video.play();
+                console.log("Video unmuted and playing.");
+            });
+
+            // Handle video loading errors
+            video.addEventListener("error", function() {
+                console.error("Error loading video. Check the file path.");
+            });
+        });
+    </script>
+</body>
+</html>

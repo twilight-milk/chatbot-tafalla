@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Persona Chatbot</title>
+    <link rel="icon" type="image/png" href="./pic/pokeball.png">
+    <link rel="stylesheet" href="styles.css">
+    <script type="importmap">
+        {
+            "imports": {
+                "@google/generative-ai": "https://esm.run/@google/generative-ai"
+            }
+        }
+    </script>
+</head>
+<body>
+    <!-- Looping Background Audio -->
+    <audio id="background-music" src="LittlerootTown.mp3" autoplay loop></audio>
+
+    <!-- Persona Selection Section -->
+    <div class="persona-selection">
+        <!-- Persona Card for Professor Oak -->
+        <div class="persona-card" data-persona="Professor Oak">
+            <img src="./pic/professor_oak.jpg" alt="Professor Oak">
+            <div class="name">Professor Oak</div>
+            <div class="status available">Available</div>
+        </div>
+        <!-- Persona Card for PokéNav -->
+        <div class="persona-card" data-persona="PokéNav">
+            <img src="./pic/pokenav.png" alt="PokéNav">
+            <div class="name">PokéNav</div>
+            <div class="status online">Online</div>
+        </div>
+        <!-- Persona Card for Nurse Joy -->
+        <div class="persona-card" data-persona="Nurse Joy">
+            <img src="./pic/nurse_joy.png" alt="Nurse Joy">
+            <div class="name">Nurse Joy</div>
+            <div class="status busy">Busy</div>
+        </div>
+        <!-- Persona Card for Misty -->
+        <div class="persona-card" data-persona="Misty">
+            <img src="./pic/misty.jpg" alt="Misty">
+            <div class="name">Misty</div>
+            <div class="status available">Available</div>
+        </div>
+        <!-- Persona Card for Brock Harrison -->
+        <div class="persona-card" data-persona="Brock Harrison">
+            <img src="./pic/brock.jpg" alt="Brock Harrison">
+            <div class="name">Brock Harrison</div>
+            <div class="status offline">Offline</div>
+        </div>
+        <!-- Persona Card for Team Rocket -->
+        <div class="persona-card" data-persona="Team Rocket">
+            <img src="./pic/team_rocket.png" alt="Team Rocket">
+            <div class="name">Team Rocket</div>
+            <div class="status busy">Busy</div>
+        </div>
+    </div>
+    <!-- Button to navigate to pokemon.html -->
+    <button id="more-btn" onclick="window.location.href='pokemon.html'">See More</button>
+
+    <!-- Catch Screen Section -->
+    <!-- CREDITS TO https://codepen.io/MaximeCP/pen/JjYOdKR maraming salamat -->
+    <div id="catch_screen">
+        <div id="encounter">
+          <img id="pokemon"/>
+          <img id="shiny"/>
+          <canvas id="sparkles" width="256" height="256"></canvas>
+          <img src="https://github.com/ZeChrales/PogoAssets/blob/master/static_assets/png/sparkle.png?raw=true" id="sparkle"/>
+        </div>
+        <select id="pokemons"></select>
+        <table id="stats">
+          <tr>
+            <td>Encounters:</td>
+            <td id="encounters_stat"></td>
+          </tr>
+          <tr>
+            <td>Shinies:</td>
+            <td id="shinies_stat"></td>
+          </tr>
+          <tr>
+            <td>Current streak:</td>
+            <td id="streak_stat"></td>
+          </tr>
+          <tr>
+            <td>Best streak:</td>
+            <td id="best_streak_stat"></td>
+          </tr>
+          <tr>
+            <td>Worst streak:</td>
+            <td id="worst_streak_stat"></td>
+          </tr>
+        </table>
+        <label><input type="checkbox" id="noflash"> No flash</label>
+      </div>
+      <div id="flash"></div>
+
+    <!-- Chatbot Container -->
+    <div class="chatbot-container">
+        <!-- Profile Picture Section -->
+        <div class="profile-picture">
+            <img src="./pic/pokenav.png" alt="Persona Profile Picture" id="persona-profile" onerror="this.src='./pic/pokenav.png'">
+        </div>
+        <!-- Chat Container -->
+        <div class="chat-container">
+        </div>
+        <!-- Typing Container -->
+        <div class="typing-container">
+            <div class="typing-textarea">
+                <textarea id="chat-input" spellcheck="false" placeholder="Ask something..." required></textarea>
+                <button id="send-btn"></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Picture Selection -->
+    <div class="profile-picture-selection">
+        <div class="profile-picture-options">
+            <img src="./user/user1.png" alt="User 1" class="profile-option" data-image="user1.png">
+            <img src="./user/user2.png" alt="User 2" class="profile-option" data-image="user2.png">
+            <img src="./user/user3.png" alt="User 3" class="profile-option" data-image="user3.png">
+            <img src="./user/user4.png" alt="User 4" class="profile-option" data-image="user4.png">
+            <img src="./user/user5.png" alt="User 5" class="profile-option" data-image="user5.png">
+          </div>
+    </div>
+
+    <!-- Importing JavaScript Modules -->
+    <script type="module" src="mainmodule.js"></script>
+    <script type="module" src="script.js"></script>
+</body>
+</html>

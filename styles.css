@@ -1,0 +1,425 @@
+/* Import Retro Pixel Font */
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+/* Body Styling */
+body {
+    background: url('https://i.redd.it/mnslf2y8hxab1.gif') no-repeat center center fixed; /* Background image */
+    background-size: cover; /* Cover the entire viewport */
+    font-family: 'VT323', monospace; /* Retro pixel font */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    color: #000000; /* Text color */
+}
+
+/* Persona Selection Panel */
+.persona-selection {
+    display: flex;
+    flex-direction: row; /* Horizontal layout */
+    flex-wrap: wrap; /* Allow wrapping to next line */
+    gap: 10px; /* Gap between cards */
+    margin-right: 20px;
+    justify-content: center; /* Center the cards */
+}
+
+.persona-card {
+    width: 150px; /* Card width */
+    height: auto; /* Auto height */
+    padding: 10px; /* Padding inside the card */
+    background: linear-gradient(145deg, #ffcb05, #ff9a3c); /* Pokémon theme colors */
+    border: 3px solid #3b4cca; /* Pokémon theme border color */
+    border-radius: 10px; /* Rounded corners */
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition effects */
+    box-shadow: 4px 4px 0 #000; /* 3D shadow effect */
+    display: flex; /* Flexbox for alignment */
+    flex-direction: column; /* Column layout */
+    align-items: center; /* Center items */
+}
+
+.persona-card:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+    box-shadow: 6px 6px 0 #000, 0 0 10px #ffcb05; /* Enhanced hover effect */
+}
+
+.persona-card img {
+    width: 60px; /* Image width */
+    height: 60px; /* Image height */
+    object-fit: cover; /* Ensure the image covers the entire area */
+    border-radius: 50%; /* Circular image */
+    border: 2px solid #3b4cca; /* Pokémon theme border color */
+}
+
+/* Add styles for name and status */
+.persona-card .name {
+    font-size: 14px; /* Font size */
+    margin-top: 5px;
+    color: #3b4cca; /* Pokémon theme text color */
+    font-weight: bold;
+}
+
+.persona-card .status {
+    font-size: 12px; /* Font size */
+    color: #fff; /* Text color */
+    padding: 2px 6px; /* Padding inside the status */
+    border-radius: 5px; /* Rounded corners */
+    margin-top: 5px; /* Margin on top */
+}
+
+/* Specific status colors */
+.status.available {
+    background-color: #4caf50; /* Green for available */
+}
+
+.status.online {
+    background-color: #2196f3; /* Blue for online */
+}
+
+.status.busy {
+    background-color: #f44336; /* Red for busy */
+}
+
+.status.offline {
+    background-color: #9e9e9e; /* Grey for offline */
+}
+
+/* Profile Picture Display */
+.profile-picture {
+    width: 100px; /* Width */
+    height: 100px; /* Height */
+    border: 4px solid #222; /* Darker border color */
+    border-radius: 50%; /* Circular shape */
+    overflow: hidden;
+    margin-bottom: 20px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3); /* Shadow effect */
+}
+
+.profile-picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensure the image covers the entire area */
+}
+
+/* Suggestion Buttons */
+.suggestion {
+    background-color: #ffcb05; /* Button background color */
+    color: #3b4cca; /* Text color */
+    padding: 10px 14px; /* Padding inside the button */
+    border-radius: 10px; /* Rounded corners */
+    cursor: pointer;
+    border: 2px solid #000; /* Border color */
+    font-size: 18px; /* Font size */
+    box-shadow: 2px 2px 0 #000; /* 3D shadow effect */
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease; /* Smooth transition effects */
+    margin-bottom: 10px;
+}
+
+/* Hover Effects for Suggestions */
+.suggestion:hover {
+    transform: scale(1.1); /* Slightly enlarge on hover */
+    box-shadow: 4px 4px 0 #000, 0 0 10px #ffcb05; /* Enhanced hover effect */
+    background-color: #f5b700; /* Change background color on hover */
+}
+
+/* Chatbot Container */
+.chatbot-container {
+    width: 420px; /* Width */
+    height: 650px; /* Height */
+    background: linear-gradient(145deg, #333, #555); /* Darker theme colors */
+    border: 10px solid #222; /* Darker border color */
+    border-radius: 30px; /* Rounded corners */
+    padding: 20px; /* Padding inside the container */
+    box-shadow: inset 5px 5px 10px #111, inset -5px -5px 10px #777; /* Inner shadow effect */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative; /* For positioning elements inside */
+}
+
+/* Add a top bar to resemble a phone interface */
+.chatbot-container::before {
+    content: '';
+    width: 100%;
+    height: 20px;
+    background-color: #222; /* Darker top bar color */
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+/* Add a bottom bar to resemble a phone interface */
+.chatbot-container::after {
+    content: '';
+    width: 100%;
+    height: 20px;
+    background-color: #222; /* Darker bottom bar color */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+/* Chat Display */
+.chat-container {
+    width: 90%;
+    height: 65%;
+    background-color: #9dc5c3; /* Background color */
+    border: 5px solid #000; /* Border color */
+    border-radius: 15px; /* Rounded corners */
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding: 20px; /* Padding inside the container */
+    box-shadow: inset 3px 3px 6px #666; /* Inner shadow effect */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Typing Area */
+.typing-container {
+    margin-top: 15px;
+    width: 100%;
+}
+
+.typing-textarea {
+    display: flex;
+    width: 100%;
+    background-color: #4f4f4f; /* Background color */
+    padding: 10px; /* Padding inside the container */
+    border-radius: 15px; /* Rounded corners */
+}
+
+#chat-input {
+    flex: 1;
+    padding: 8px; /* Padding inside the input */
+    border: 2px solid #000; /* Border color */
+    border-radius: 6px; /* Rounded corners */
+    background-color: #2c2c2c; /* Background color */
+    color: #fff; /* Text color */
+    font-family: 'VT323', monospace; /* Font family */
+    font-size: 20px; /* Font size */
+}
+
+#send-btn {
+    margin-left: 10px;
+    padding: 20px; /* Padding inside the button */
+    background: linear-gradient(145deg, #ff4655, #ff9a3c); /* Background gradient */
+    color: #fff; /* Text color */
+    border: 3px solid #000; /* Border color */
+    border-radius: 50%; /* Circular shape */
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    box-shadow: 4px 4px 0 #000; /* 3D shadow effect */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth transition effects */
+}
+
+/* Add a retro pixel arrow icon using CSS */
+#send-btn::before {
+    content: '';
+    width: 12px;
+    height: 12px;
+    background-color: #fff; /* Arrow color */
+    clip-path: polygon(0% 0%, 100% 50%, 0% 100%); /* Arrow shape */
+    display: block;
+}
+
+/* Hover Effects */
+#send-btn:hover {
+    transform: scale(1.1); /* Slightly enlarge on hover */
+    box-shadow: 6px 6px 0 #000, 0 0 10px #ff4655; /* Enhanced hover effect */
+}
+
+/* Chat Messages */
+.chat-message {
+    margin-bottom: 15px;
+    padding: 14px; /* Padding inside the message */
+    border-radius: 12px; /* Rounded corners */
+    max-width: 75%; /* Maximum width */
+    font-size: 20px; /* Font size */
+    box-shadow: 2px 2px 0 #000; /* 3D shadow effect */
+    position: relative; /* Add position relative for positioning child elements */
+}
+
+.chat-message.right {
+    background-color: #f8e473; /* Background color for right messages */
+    float: right;
+    text-align: left;
+}
+
+.chat-message.left {
+    background-color: #7fc8a9; /* Background color for left messages */
+    float: left;
+    text-align: left;
+}
+
+/* Profile picture in chat bubble */
+.chat-profile-picture {
+    width: 30px; /* Width */
+    height: 30px; /* Height */
+    border-radius: 50%; /* Circular shape */
+    position: absolute;
+    top: 10px;
+    right: -40px; /* Adjust position as needed */
+}
+
+/* Typing Indicator */
+#typing-indicator {
+    font-style: italic;
+    background-color: #7fc8a9; /* Background color */
+    padding: 10px; /* Padding inside the indicator */
+    border-radius: 12px; /* Rounded corners */
+    border: 2px solid #000; /* Border color */
+    max-width: 60%; /* Maximum width */
+    margin-bottom: 15px;
+}
+
+/* Upload Label */
+.upload-label {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px; /* Padding inside the label */
+    background-color: #ffcb05; /* Background color */
+    color: #3b4cca; /* Text color */
+    border: 2px solid #000; /* Border color */
+    border-radius: 10px; /* Rounded corners */
+    cursor: pointer;
+    text-align: center;
+    font-size: 18px; /* Font size */
+    box-shadow: 2px 2px 0 #000; /* 3D shadow effect */
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease; /* Smooth transition effects */
+}
+
+.upload-label:hover {
+    transform: scale(1.1); /* Slightly enlarge on hover */
+    box-shadow: 4px 4px 0 #000, 0 0 10px #ffcb05; /* Enhanced hover effect */
+    background-color: #f5b700; /* Change background color on hover */
+}
+
+/* Profile Picture Selection */
+.profile-picture-selection {
+    margin-top: 20px;
+    left: -60px;
+    text-align: center;
+    right: 40px;
+    position: relative;
+}
+
+.profile-picture-options {
+    display: flex;
+    flex-direction: column; /* Vertical layout */
+    align-items: center; /* Center the images vertically */
+    gap: 10px; /* Space between the pictures */
+    margin-left: 80px;
+}
+
+.profile-option {
+    width: 60px; /* Width */
+    height: 60px; /* Height */
+    border-radius: 50%; /* Circular shape */
+    cursor: pointer;
+    border: 2px solid #000; /* Border color */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth transition effects */
+}
+
+.profile-option:hover {
+    transform: scale(1.1); /* Slightly enlarge on hover */
+    box-shadow: 4px 4px 0 #000, 0 0 10px #ffcb05; /* Enhanced hover effect */
+}
+
+/* CREDITS TO https://codepen.io/MaximeCP/pen/JjYOdKR maraming salamat */
+
+#catch_screen {
+    width: 100%;
+    height: 402px;
+    padding-top: 110px;
+    text-align: center;
+    user-select: none;
+}
+
+#pokemon, #shiny {
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    margin: 0 auto 5px auto;
+    cursor: pointer;
+}
+
+#shiny, #sparkle { display: none; }
+
+#encounter { position:relative; }
+
+#sparkles {
+    position: absolute;
+    width: 256px;
+    height: 256px;
+    top:48px;
+    left:calc(50% - 128px);
+    pointer-events: none;
+}
+
+#pokemons {
+    font-size: 16px;
+    -webkit-appearance: none;
+    padding: 10px 36px 10px 20px;
+    border-radius: 20px;
+    color: white;
+    background: url("https://github.com/ZeChrales/PogoAssets/blob/master/static_assets/png/Arrow_rounded.png?raw=true") no-repeat center right 16px / 12px 12px, rgba(0, 0, 0, 0.6);
+    border: none;
+    outline: none;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+#stats, label {
+    color: white;
+    font-family: Sans-serif;
+    font-weight: 100;
+    font-size: 16px;
+    line-height: 22px;
+    margin: auto; 
+    text-align: right;
+}
+
+label, input[type="checkbox"] { cursor: pointer; }
+
+#stats td:last-child { text-align: left; width: 50px; }
+#stats td[colspan="2"] { text-align: center; }
+
+#flash {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: white;
+    pointer-events:none;
+}
+
+/* Button to navigate to pokemon.html */
+#more-btn {
+    background-color: #ffcb05; /* Button background color */
+    color: #3b4cca; /* Text color */
+    padding: 10px 20px; /* Padding inside the button */
+    border: 2px solid #000; /* Border color */
+    border-radius: 10px; /* Rounded corners */
+    cursor: pointer;
+    font-size: 18px; /* Font size */
+    box-shadow: 2px 2px 0 #000; /* 3D shadow effect */
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease; /* Smooth transition effects */
+    margin-top: 20px;
+    display: inline-block;
+    font-family: 'VT323', monospace; /* Pixel font */
+}
+
+#more-btn:hover {
+    transform: scale(1.1); /* Slightly enlarge on hover */
+    box-shadow: 4px 4px 0 #000, 0 0 10px #ffcb05; /* Enhanced hover effect */
+    background-color: #f5b700; /* Change background color on hover */
+}
