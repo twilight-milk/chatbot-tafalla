@@ -284,14 +284,36 @@ const getChatResponse = async (userText) => {
   }
 };
 
+const changePersona = (personaName) => {
+  if (personas[personaName]) {
+    currentPersona = personaName;
+    profilePicture.src = `./pic/${personas[currentPersona].image}`;
+    displayMessage(`You are now chatting with ${currentPersona}.`, "left");
+    displaySuggestions();
+  } else {
+    displayMessage(`Sorry, I don't recognize the persona "${personaName}".`, "left");
+  }
+};
+
+
 // Handle sending messages
 const handleSendMessage = () => {
   const userText = chatInput.value.trim();
   if (!userText) return;
   displayMessage(userText, "right");
-  getChatResponse(userText);
+
+  // Check for persona change command
+  const personaChangeMatch = userText.match(/try (.*) persona/i);
+  if (personaChangeMatch) {
+    const newPersona = personaChangeMatch[1].trim();
+    changePersona(newPersona);
+  } else {
+    getChatResponse(userText);
+  }
+
   chatInput.value = "";
 };
+
 
 // Event Listeners
 sendButton.addEventListener("click", handleSendMessage);
