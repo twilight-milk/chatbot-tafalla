@@ -179,6 +179,22 @@ body {
     flex-direction: column;
 }
 
+/* Custom Scrollbar */
+.chat-container::-webkit-scrollbar {
+    width: 12px;
+}
+
+.chat-container::-webkit-scrollbar-track {
+    background: #555; /* Track color */
+    border-radius: 10px;
+}
+
+.chat-container::-webkit-scrollbar-thumb {
+    background-color: #333; /* Thumb color */
+    border-radius: 10px;
+    border: 3px solid #555; /* Space around thumb */
+}
+
 /* Typing Area */
 .typing-container {
     margin-top: 15px;
@@ -202,6 +218,13 @@ body {
     color: #fff; /* Text color */
     font-family: 'VT323', monospace; /* Font family */
     font-size: 20px; /* Font size */
+    resize: none; /* Disable resizing */
+    outline: none; /* Remove outline */
+}
+
+/* Placeholder text color */
+#chat-input::placeholder {
+    color: #888; /* Placeholder text color */
 }
 
 #send-btn {
@@ -421,5 +444,5 @@ label, input[type="checkbox"] { cursor: pointer; }
 #more-btn:hover {
     transform: scale(1.1); /* Slightly enlarge on hover */
     box-shadow: 4px 4px 0 #000, 0 0 10px #ffcb05; /* Enhanced hover effect */
-    background-color: #f5b700; /* Change background color on hover */
+    background-color: #f5b700; 
 }
