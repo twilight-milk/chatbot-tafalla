@@ -4,3 +4,7 @@ const genAI = new GoogleGenerativeAI(API_KEY);
 const model = genAI.getGenerativeModel({
     model: "learnlm-1.5-pro-experimental" // or "gemini-1.5-flash"
 });
+
+export {model};
+
+
