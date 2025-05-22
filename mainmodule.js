@@ -1,10 +1,14 @@
- import {GoogleGenerativeAI} from "@google/generative-ai";
-const API_KEY = "AIzaSyBOUpifEfGA6baP8wzA_T8XY0oFZc-rTw0";
-const genAI = new GoogleGenerativeAI(API_KEY);
-const model = genAI.getGenerativeModel({
-    model: "learnlm-1.5-pro-experimental" // or "gemini-1.5-flash"
-});
+ import { GoogleGenAI } from "@google/genai";
 
-export {model};
+const ai = new GoogleGenAI({ apiKey: "AIzaSyBOUpifEfGA6baP8wzA_T8XY0oFZc-rTw0" });
 
+async function main() {
+  const response = await ai.models.generateContent({
+    model: "gemini-2.0-flash",
+    contents: "Explain how AI works in a few words",
+  });
+  console.log(response.text);
+}
+
+await main();
 
